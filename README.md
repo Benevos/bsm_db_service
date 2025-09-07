@@ -118,11 +118,7 @@ This operation takes an *schema* of descriptive and technical information of a d
     "operation": "deploy",
     "parameters": {
         "id": [database_id: str]
-        "tags": {
-            "[tag_name]": [some_value: any]
-            "[tag_name]": [some_value: any]
-            "[tag_name]": [some_value: any]
-        },
+        "tags": [values: dict[str, any]],
         "connection": {
             "manager": [database_manager: str],
             "ip": [database_ip: str],

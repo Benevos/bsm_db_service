@@ -7,5 +7,5 @@ json = {
     }
 }
 
-response = requests.post("http://localhost:44000/op", json=json)
+response = requests.post("http://localhost:44000/operation", json=json)
 print(response.json())

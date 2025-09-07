@@ -59,7 +59,7 @@ logger = logging.getLogger("uvicorn.error")
 async def health():
     return JSONResponse(status_code=200, content={"message": "ok"})
 
-@app.post("/op")
+@app.post("/operation")
 async def operation(request: OperationRequest):
     logger.info("Request")
     if request.operation == "index":

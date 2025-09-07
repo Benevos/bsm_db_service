@@ -1,7 +1,7 @@
 
 # About the project
 
-This project implements a service to centrally manage databases through a lightweight form of Infrastructure as Code *(IaC)* based on domain specific directives, providing the following main capabilities:  
+This project implements a service to centrally manage databases through a lightweight form of Infrastructure as Code *(IaaC)* based on domain specific directives, providing the following main capabilities:  
 
 - **Indexing**: Register existing databases using technical information and tags.  
 - **Searching**: Locate indexed databases by `id` (unique result) or by `tags` (multiple results).  
@@ -98,7 +98,13 @@ DOCKER_SOCK = "/var/run/docker.sock"
 
 Once the service is deployed and active you need to follow a *schema* depending on the operation you want to do.
 
-All the request need to be sent to this route: `[ACCESSOR_IP]:[ACCESSOR_PORT]/operation`
+All the request need to be sent to this route: 
+
+`[ACCESSOR_IP]:[ACCESSOR_PORT]/operation`
+
+For example:
+
+
 
 
 ## Operations

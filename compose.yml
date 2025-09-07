@@ -1,0 +1,109 @@
+services:
+
+  accessor:
+    image: ubuntu:latest
+    container_name: accessor
+    ports:
+      - 44000:44000
+    volumes:
+      - ./app/accessor:/app
+    networks:
+      - bsm_db_service
+    command: bash -c "cd ./app 
+      && apt-get update 
+      && apt-get upgrade -y 
+      && apt-get install -y python3 python3-pip 
+      && apt-get install -y python3-venv 
+      && python3 -m venv /app/venv 
+      && . /app/venv/bin/activate 
+      && pip install -r requirements.txt 
+      && uvicorn app:app --host 0.0.0.0 --port 44000 --reload"
+
+  proxier:
+    image: ubuntu:latest
+    container_name: proxier
+    ports:
+      - 45000:45000
+    volumes:
+      - ./app/proxier:/app
+    networks:
+      - bsm_db_service
+    command: bash -c "cd ./app 
+      && apt-get update 
+      && apt-get upgrade -y 
+      && apt-get install -y python3 python3-pip 
+      && apt-get install -y python3-venv 
+      && python3 -m venv /app/venv 
+      && . /app/venv/bin/activate 
+      && pip install -r requirements.txt 
+      && uvicorn app:app --host 0.0.0.0 --port 45000 --reload"
+
+  searcher:
+    image: ubuntu:latest
+    container_name: searcher
+    ports:
+      - 46000:46000
+    volumes:
+      - ./app/searcher:/app
+    networks:
+      - bsm_db_service
+    command: bash -c "cd ./app 
+      && apt-get update 
+      && apt-get upgrade -y 
+      && apt-get install -y python3 python3-pip 
+      && apt-get install -y python3-venv 
+      && python3 -m venv /app/venv 
+      && . /app/venv/bin/activate 
+      && pip install -r requirements.txt 
+      && uvicorn app:app --host 0.0.0.0 --port 46000 --reload"
+  
+  indexer:
+    image: ubuntu:latest
+    container_name: indexer
+    ports:
+      - 47000:47000
+    volumes:
+      - ./app/indexer:/app
+    networks:
+      - bsm_db_service
+    command: bash -c "cd ./app 
+      && apt-get update 
+      && apt-get upgrade -y 
+      && apt-get install -y python3 python3-pip 
+      && apt-get install -y python3-venv 
+      && python3 -m venv /app/venv 
+      && . /app/venv/bin/activate 
+      && pip install -r requirements.txt 
+      && uvicorn app:app --host 0.0.0.0 --port 47000 --reload"
+
+  deployer:
+    image: ubuntu:latest
+    container_name: deployer
+    ports:
+      - 48000:48000
+    volumes:
+      - ./app/deployer:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - bsm_db_service
+    command: bash -c "cd ./app 
+      && apt-get update 
+      && apt-get upgrade -y 
+      && apt-get install -y python3 python3-pip 
+      && apt-get install -y python3-venv 
+      && python3 -m venv /app/venv 
+      && . /app/venv/bin/activate 
+      && pip install -r requirements.txt 
+      && uvicorn app:app --host 0.0.0.0 --port 48000 --reload"
+
+  dbindex:
+    image: mongo:latest
+    container_name: dbindex
+    ports:
+      - 27017:27017
+    networks:
+      - bsm_db_service     
+
+networks:
+  bsm_db_service:
+    external: true

@@ -98,7 +98,7 @@ DOCKER_SOCK = "/var/run/docker.sock"
 
 Once the service is deployed and active you need to follow a *schema* depending on the operation you want to do.
 
-All the request need to be sent to this route: `/[ACCESSOR_IP]:[ACCESSOR_PORT]/operation`
+All the request need to be sent to this route: `[ACCESSOR_IP]:[ACCESSOR_PORT]/operation`
 
 
 ## Operations

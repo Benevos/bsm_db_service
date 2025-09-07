@@ -182,6 +182,8 @@ This operation deploys a new database as a container with the user specification
 }
 ```
 
+*Note: Currently the only value supported for `manager` in deployment operation is `"mongodb"`*.
+
 ### Deletion
 
 This operation deletes indexed databases whether internal or external managed. If the database is internal, `accessor` will send the request to `deployer` and it will delete the container associated wiht the request, then `indexer` will unindex it. If the database is external, `accessor` will send the request to `indexer` (trough `proxier`) and just delete the registry.

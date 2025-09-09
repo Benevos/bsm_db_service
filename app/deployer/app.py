@@ -70,7 +70,6 @@ async def lifespan(app: FastAPI):
     
     await connect_to_service("PROXIER", PROXIER_ADDRESS)
     
-    
     logger.info("Service 'DEPLOYER' started succesfully")
     
     yield

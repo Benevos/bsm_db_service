@@ -63,7 +63,12 @@ async def health():
 async def operation(request: OperationRequest):
     logger.info("Request")
     if request.operation == "index":
-        return JSONResponse(status_code=400, content={"message": "Indexing external databases is not supported yet"})
+        async with httpx.AsyncClient() as client:
+            response = await client.post(f"{PROXIER_ADDRESS}/indexer/index", json=request.parameters)
+            try: 
+                return JSONResponse(status_code=response.status_code, content=response.json()) 
+            except Exception as e:
+                return JSONResponse(status_code=response.status_code, content={"message": response.text})
     
     elif request.operation == "deploy":
         async with httpx.AsyncClient() as client:

@@ -137,7 +137,7 @@ This operation takes an *schema* of descriptive and technical information of a d
 
 *Notes:*
 - *Indexing `external: True` (external domain databases) is not supported yet since external databases are typically not exposed to public internet and they need to be accessed by private APIs.*
-- *If you database is already deployed within the local docker context and you want it to be manager by this service, you will need to index it as `external: False` and attach mananually the `NETWORK_NAME` you established. See [Default enviromental variables](#default-enviromental-variables)*
+- *If you database is already deployed within the local docker context and you want it to be managed by this service, you will need to index it as `external: False` and attach mananually the `NETWORK_NAME` you established. See [Default enviromental variables](#default-enviromental-variables)*
 
 ### Searching
 
